@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Happy 2024!</title>
+		<title>Happy 2023!</title>
 	</head>
 	<style>
 		#music-image {
@@ -66,20 +66,27 @@
 		}
 	</style>
 	<body>
-		<audio id="music" style="display: none" class="musicControl" autoplay="autoplay" loop="loop" preload="auto" muted
-    src="./lib/music.mp3"></audio>
+		<audio id="music" style="display: none" class="musicControl" autoplay="autoplay" loop="loop" preload="auto"
+			controls="controls" src="./lib/music.mp3"></audio>
+		<img id="music-image" style="position: fixed;z-index: 999;height:30px;right: 20px;top: 20px;" src="./lib/cc.jpg"
+			alt="" />
 	</body>
 	<script src='./lib/gameCanvas-4.0.js'></script>
 	<script src="./lib/script.js"></script>
 	<script>
-		
-
 		let musicImage = document.getElementById('music-image');
 		let is = 1;
-		document.addEventListener('click', function() {
-			const audio = document.getElementById('music');
-			audio.muted = false;
-			audio.play();
+		musicImage.addEventListener('click', () => {
+			let music = document.getElementById('music');
+			if (is === 0) {
+				is = 1;
+				musicImage.src = './lib/cd.jpg';
+				music.play();
+			} else {
+				is = 0;
+				musicImage.src = './lib/ca.jpg';
+				music.pause();
+			}
 		});
 		if (typeof WeixinJSBridge == "undefined") {
 			document.addEventListener('WeixinJSBridgeReady', function() {
